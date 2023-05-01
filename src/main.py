@@ -264,4 +264,16 @@ async def on_message(message: DiscordMessage):
         logger.exception(e)
 
 
+import threading
+from flask import Flask, request, Response
+app = Flask(__name__)
+@app.route('/_ah/warmup', methods=['GET'])
+def warmup():
+    # Handle your warmup logic. Initiate db connection, etc.
+    return Response(status=200)
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.start()
+
 client.run(DISCORD_BOT_TOKEN)
