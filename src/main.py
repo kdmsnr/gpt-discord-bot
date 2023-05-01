@@ -265,7 +265,7 @@ async def on_message(message: DiscordMessage):
         logger.exception(e)
 
 # Web
-from keep_alive import keep_alive
+from src.keep_alive import keep_alive
 keep_alive()
 
 client.run(DISCORD_BOT_TOKEN)
