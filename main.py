@@ -268,6 +268,11 @@ async def on_message(message: DiscordMessage):
 import threading
 from flask import Flask, request, Response
 app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def root():
+    return Response(status=200)
+
 @app.route('/_ah/warmup', methods=['GET'])
 def warmup():
     # Handle your warmup logic. Initiate db connection, etc.
