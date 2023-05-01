@@ -281,7 +281,8 @@ def main():
     discord_bot_thread.start()
 
     # Flaskアプリケーションを実行する
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    # if os.environ.get("FLASK_ENV") == "development":
+    #     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 
 if __name__ == '__main__':
