@@ -271,9 +271,13 @@ app = Flask(__name__)
 def warmup():
     # Handle your warmup logic. Initiate db connection, etc.
     return Response(status=200)
-def run_flask():
-    app.run(host='0.0.0.0', port=8080)
-flask_thread = threading.Thread(target=run_flask)
-flask_thread.start()
 
-client.run(DISCORD_BOT_TOKEN)
+if __name__ == "__main__":
+    import threading
+
+    # Discord botを別のスレッドで実行する
+    discord_bot_thread = threading.Thread(target=client.run, args=(DISCORD_BOT_TOKEN,))
+    discord_bot_thread.start()
+
+    # Flaskアプリケーションを実行する
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
