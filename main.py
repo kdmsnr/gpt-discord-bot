@@ -1,3 +1,4 @@
+import os
 import discord
 from discord import Message as DiscordMessage
 import logging
@@ -272,7 +273,7 @@ def warmup():
     # Handle your warmup logic. Initiate db connection, etc.
     return Response(status=200)
 
-if __name__ == "__main__":
+def main():
     import threading
 
     # Discord botを別のスレッドで実行する
@@ -281,3 +282,7 @@ if __name__ == "__main__":
 
     # Flaskアプリケーションを実行する
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+
+if __name__ == '__main__':
+    main()
