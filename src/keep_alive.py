@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, Response
 from threading import Thread
 
 app = Flask('')
 
 @app.route('/', methods=['GET'])
 def home():
-    return Response(status=200)
+    return "Hello"
 
 @app.route('/_ah/warmup', methods=['GET'])
 def warmup():
