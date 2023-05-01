@@ -1,13 +1,18 @@
 runtime: python311
 env: standard
-entrypoint: gunicorn -b :$PORT main:app
+entrypoint: python3 -m src.main
 
 handlers:
 - url: /.*
   script: auto
 
 instance_class: F1
+
 automatic_scaling:
   min_instances: 1
-inbound_services:
-  - warmup
+  max_instances: 1
+  min_idle_instances: 1
+  max_idle_instances: 1
+
+#inbound_services:
+#  - warmup

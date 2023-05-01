@@ -264,31 +264,8 @@ async def on_message(message: DiscordMessage):
     except Exception as e:
         logger.exception(e)
 
+# Web
+from keep_alive import keep_alive
+keep_alive()
 
-import threading
-from flask import Flask, request, Response
-app = Flask(__name__)
-
-@app.route('/', methods=['GET'])
-def root():
-    return Response(status=200)
-
-@app.route('/_ah/warmup', methods=['GET'])
-def warmup():
-    # Handle your warmup logic. Initiate db connection, etc.
-    return Response(status=200)
-
-def main():
-    import threading
-
-    # Discord botを別のスレッドで実行する
-    discord_bot_thread = threading.Thread(target=client.run, args=(DISCORD_BOT_TOKEN,))
-    discord_bot_thread.start()
-
-    # Flaskアプリケーションを実行する
-    # if os.environ.get("FLASK_ENV") == "development":
-    #     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
-
-
-if __name__ == '__main__':
-    main()
+client.run(DISCORD_BOT_TOKEN)
